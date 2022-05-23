@@ -1,0 +1,9 @@
+this is where a form will live to edit <%= dinoId %>
+<form method="POST" action="/dinosaurs/<%= dinoId%>/?_method=PUT" >
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="<%=dino.name%>"/>
+
+    <label for="type">Type</label>
+    <input tupe="text" name="type" value="<%= dino.type %>"/>
+    <button type="submit">Edit</button>
+</form>
