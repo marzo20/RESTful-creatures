@@ -78,6 +78,6 @@ router.delete('/:id', (req, res) =>{
     fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(prehistoricData))
 
     // redirect to page
-    res.redirect('/preshitoric_creatures')
+    res.redirect('/prehistoric_creatures')
 })
 module.exports = router

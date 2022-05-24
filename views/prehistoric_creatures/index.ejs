@@ -7,7 +7,8 @@
     <% myPrehistoric.forEach((prehistoric, index) => { %>
         <li> <img src="<%= prehistoric.img_url%>" width="150" height="150"/>
             <%= prehistoric.type %> 
-            <form method="POST" action="preshitoric_creatures/<%= index %>/?_method=DELETE">
+            <a href="/prehistoric_creatures/edit/<%= index %>">EDIT</a>
+            <form method="POST" action="/prehistoric_creatures/<%= index %>/?_method=DELETE">
                 <button type="submit">DELETE</button>
             </form>
         </li>
