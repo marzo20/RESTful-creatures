@@ -1,0 +1,9 @@
+you can edit <%= prehistoricId %> here
+<form method="POST" action="/prehistoric_creatures/<%= prehistoricId%>/?_method=PUT">
+    <label for="type">Type:</label>
+    <input type="text" name="type"/>
+    <lable for="img_url">Image Url:</lable>
+    <input type="text" name="img_url"/>
+    <button type="submit">Edit</button>
+
+</form>

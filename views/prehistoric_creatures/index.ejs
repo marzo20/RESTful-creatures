@@ -4,7 +4,12 @@
     <button type="submit">Filter</button>
 </form>
 <ul>
-    <% myPrehistoric.forEach(prehistoric => { %>
-        <li> <%= prehistoric.type %> <img src="<%= prehistoric.img_url%>" width="150" height="150"/></li>
+    <% myPrehistoric.forEach((prehistoric, index) => { %>
+        <li> <img src="<%= prehistoric.img_url%>" width="150" height="150"/>
+            <%= prehistoric.type %> 
+            <form method="POST" action="preshitoric_creatures/<%= index %>/?_method=DELETE">
+                <button type="submit">DELETE</button>
+            </form>
+        </li>
     <% }) %>
 </ul>

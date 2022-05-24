@@ -1,4 +1,6 @@
 const express = require('express')
+const req = require('express/lib/request')
+const { append } = require('express/lib/response')
 const router = express.Router()
 const fs =require('fs')
 
@@ -42,4 +44,40 @@ router.post('/', (req, res) => {
     res.redirect('/prehistoric_creatures')
 })  
 
+// Get /prehisoric_creatures/:id -- a view of a fomr to edit a specific creature @ :id
+router.get('/edit/:id', (req, res) => {
+    let prehistoric = fs.readFileSync('./prehistoric_creatures.json')
+    let prehistoricData = JSON.parse(prehistoric)
+    res.render('prehistoric_creatures/edit.ejs',{
+        prehistoricId: req.params.id,
+        creature: prehistoricData[req.params.id]
+    })
+    
+})
+// put /preshitoric_creatures/:id -- update a creatures @ :id in the database
+router.put('/:id', (req, res) => {
+    let prehistoric = fs.readFileSync('./prehistoric_creatures.json')
+    let prehistoricData = JSON.parse(prehistoric)
+    prehistoricData[req.params.id].type = req.body.type
+    prehistoricData[req.params.id].img_url = req.body.img_url
+    console.log(req.params.id, req.body)
+
+    // wrtie the json file
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(prehistoricData))
+    // res.redirect
+    res.redirect('/prehistoric_creatures')
+})
+// DELETE /prehistoric/:id -- DESTROY a creature
+router.delete('/:id', (req, res) =>{
+    let prehistoric = fs.readFileSync('./prehistoric_creatures.json')
+    let prehistoricData = JSON.parse(prehistoric)
+
+    // splice creature out of the array
+    prehistoricData.splice(req.params.id, 1)
+    // save the json
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(prehistoricData))
+
+    // redirect to page
+    res.redirect('/preshitoric_creatures')
+})
 module.exports = router
